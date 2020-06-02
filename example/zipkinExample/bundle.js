@@ -5,7 +5,6 @@
 // use higher-precision time than milliseconds
 process.hrtime = require('browser-process-hrtime');
 
-const theButton = document.getElementById('theButton');
 // setup tracer
 const {recorder} = require('./recorder');
 const {Tracer, ExplicitContext} = require('zipkin');
@@ -34,9 +33,15 @@ function ziptest() {
     .catch(err => log(`Failed:\n${err.stack}`));
 }
 
-// test();
+//ziptest();
 
-//document.getElementById('theButton').addEventListener('click', () => test, false);
+window.userale.filter(function (log) {
+  var type_array = ['mouseup', 'mouseover', 'mousedown', 'keydown', 'dblclick', 'blur', 'focus', 'input', 'wheel'];
+  var logType_array = ['interval'];
+  return !type_array.includes(log.type) && !logType_array.includes(log.logType);
+});
+
+document.getElementById('theButton').addEventListener('click', () => ziptest, false);
 
 }).call(this,require('_process'))
 },{"./recorder":18,"_process":6,"browser-process-hrtime":2,"zipkin":17,"zipkin-instrumentation-fetch":13}],2:[function(require,module,exports){
