@@ -41,7 +41,7 @@ window.userale.filter(function (log) {
   return !type_array.includes(log.type) && !logType_array.includes(log.logType);
 });
 
-document.getElementById('theButton').addEventListener('click', () => ziptest, false);
+document.getElementById('theButton').addEventListener('click', () => ziptest(), false);
 
 }).call(this,require('_process'))
 },{"./recorder":18,"_process":6,"browser-process-hrtime":2,"zipkin":17,"zipkin-instrumentation-fetch":13}],2:[function(require,module,exports){
