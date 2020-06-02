@@ -24,6 +24,8 @@ const log = text => logEl.innerHTML = `${logEl.innerHTML}\n${text}`;
 //    .then(text => log(text))
 //    .catch(err => log(`Failed:\n${err.stack}`));
 
+
+// shove wrapped Fetch call in function
 function ziptest() {
   zipkinFetch('http://localhost:8081/')
     .then(response => (response.text()))
@@ -31,12 +33,15 @@ function ziptest() {
     .catch(err => log(`Failed:\n${err.stack}`));
 }
 
+// test to see function works as expected
 //ziptest();
 
+// useralejs filter--only want clicks
 window.userale.filter(function (log) {
   var type_array = ['mouseup', 'mouseover', 'mousedown', 'keydown', 'dblclick', 'blur', 'focus', 'input', 'wheel'];
   var logType_array = ['interval'];
   return !type_array.includes(log.type) && !logType_array.includes(log.logType);
 });
 
+//call zipkinFetch function conditional on click event added in html
 document.getElementById('theButton').addEventListener('click', () => ziptest(), false);
