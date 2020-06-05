@@ -44,4 +44,10 @@ window.userale.filter(function (log) {
 });
 
 //call zipkinFetch function conditional on click event added in html
-document.getElementById('theButton').addEventListener('click', () => ziptest(), false);
+document.getElementById('theButton')
+    .addEventListener('click', () => ziptest(), false);
+
+//@ explore event listeners for wrapped fetch
+self.addEventListener('fetch', function () {
+  console.log("fetch");
+});

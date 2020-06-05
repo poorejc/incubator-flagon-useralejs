@@ -26,6 +26,8 @@ const log = text => logEl.innerHTML = `${logEl.innerHTML}\n${text}`;
 //    .then(text => log(text))
 //    .catch(err => log(`Failed:\n${err.stack}`));
 
+
+// shove wrapped Fetch call in function
 function ziptest() {
   zipkinFetch('http://localhost:8081/')
     .then(response => (response.text()))
@@ -33,16 +35,24 @@ function ziptest() {
     .catch(err => log(`Failed:\n${err.stack}`));
 }
 
+// test to see function works as expected
 //ziptest();
 
+// useralejs filter--only want clicks
 window.userale.filter(function (log) {
   var type_array = ['mouseup', 'mouseover', 'mousedown', 'keydown', 'dblclick', 'blur', 'focus', 'input', 'wheel'];
   var logType_array = ['interval'];
   return !type_array.includes(log.type) && !logType_array.includes(log.logType);
 });
 
-document.getElementById('theButton').addEventListener('click', () => ziptest(), false);
+//call zipkinFetch function conditional on click event added in html
+document.getElementById('theButton')
+    .addEventListener('click', () => ziptest(), false);
 
+//@ explore event listeners for wrapped fetch
+self.addEventListener('fetch', function () {
+  console.log("fetch");
+});
 }).call(this,require('_process'))
 },{"./recorder":18,"_process":6,"browser-process-hrtime":2,"zipkin":17,"zipkin-instrumentation-fetch":13}],2:[function(require,module,exports){
 (function (process,global){
