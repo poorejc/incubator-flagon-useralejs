@@ -139,3 +139,48 @@ document.addEventListener('change', function(e) {
         return false
     }
 });
+
+/**Mocks XMLHttpRequest made from with click event
+ */
+document.addEventListener('click', function(e) {
+    if (e.target.innerHTML === 'Mock Request Data') {
+        window.userale.packageCustomLog({
+            type: 'XMLHttpRequest.open'},
+            function(){return {'url': 'http://request.com'
+                }},
+            false
+        );
+    } else {
+        return false
+    }
+});
+
+/**Mocks XMLHttpRequest response with click event
+*/
+document.addEventListener('click', function(e) {
+    if (e.target.innerHTML === 'Mock Receive Data') {
+        window.userale.packageCustomLog({
+            type: 'XMLHttpRequest.response',
+            responseType: 'json'},
+            function(){return {
+                "array": [
+                    1,
+                    2,
+                    3
+                ],
+                "boolean": true,
+                "null": null,
+                "number": 123,
+                "object": {
+                    "a": "b",
+                    "c": "d",
+                    "e": "f"
+                },
+                "string": "Hello World"
+            }},
+            false
+        );
+    } else {
+        return false
+    }
+});
